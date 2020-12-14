@@ -15,7 +15,7 @@
 
 <ng-container *ngIf="searchTerm; else empty">
   <div class="book-grid">
-    <div class="book" data-testing="book-item" *ngFor="let b of (this.books$|async)">
+    <div class="book" data-testing="book-item" *ngFor="let b of (books$|async)">
       <div class="book--title">
         {{ b.title }}
       </div>
@@ -34,7 +34,7 @@
             <button
               mat-flat-button
               color="primary"
-              [attr.aria-label]="Add to my reading list"
+              aria-label="Add to my reading list"
               (click)="addBookToReadingList(b)"
               [disabled]="b.isAdded"
             >
