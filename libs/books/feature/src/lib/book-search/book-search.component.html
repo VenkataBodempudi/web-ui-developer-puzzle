@@ -21,7 +21,7 @@
       </div>
       <div class="book--content">
         <div class="book--content--cover">
-          <img src="{{ b.coverUrl }}"  alt="Cover Image"/>
+          <img src="{{ b.coverUrl }}"  alt=" "/>
         </div>
         <div class="book--content--info">
           <div><strong>Author:</strong> {{ b.authors.join(',') }}</div>
@@ -34,7 +34,7 @@
             <button
               mat-flat-button
               color="primary"
-              [attr.aria-label]="'click to add' + b.title + 'authored by'+ b.authors.join(',')+ ' to the reading list'"
+              [attr.aria-label]="Add to my reading list"
               (click)="addBookToReadingList(b)"
               [disabled]="b.isAdded"
             >
