@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getReadingList, removeFromReadingList } from '@tmo/books/data-access';
+import { getReadingList, removeFromReadingList,markAsFinished, undoMarkAsFinished } from '@tmo/books/data-access';
 import { ReadingListItem } from '@tmo/shared/models';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'tmo-reading-list',
   templateUrl: './reading-list.component.html',
@@ -10,9 +12,16 @@ import { ReadingListItem } from '@tmo/shared/models';
 export class ReadingListComponent {
   readingList$ = this.store.select(getReadingList);
 
-  constructor(private readonly store: Store) {}
+
+  constructor(private readonly store: Store, private snackBar: MatSnackBar) {}
 
   removeFromReadingList(item: ReadingListItem) {
     this.store.dispatch(removeFromReadingList({ item }));
+  }
+
+  markBookAsFinished(item: ReadingListItem) {
+
+    this.store.dispatch(markAsFinished({ item }));
+
   }
 }

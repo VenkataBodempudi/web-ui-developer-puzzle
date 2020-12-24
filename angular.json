@@ -389,7 +389,7 @@
   },
   "cli": {
     "defaultCollection": "@nrwl/angular",
-    "analytics": "1beac595-888c-40b0-9c49-ed92f09a4746"
+    "analytics": "3ee5729f-6f96-4de8-9343-ec44208cb2ea"
   },
   "schematics": {
     "@nrwl/angular:application": {

@@ -35,10 +35,11 @@
               mat-flat-button
               color="primary"
               aria-label="Add to my reading list"
+              data-testing="want-to-read-button"
               (click)="addBookToReadingList(b)"
               [disabled]="b.isAdded"
             >
-              Want to Read
+            {{ b.isFinished ? 'Finished' : 'Want to Read' }}
             </button>
           </div>
         </div>

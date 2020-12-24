@@ -1,5 +1,16 @@
 <ng-container *ngIf="(readingList$ | async).length > 0; else empty">
-  <div class="reading-list-item" *ngFor="let b of readingList$ | async">
+  <div class="reading-list-item" data-testing="reading-listitem" *ngFor="let b of readingList$ | async">
+      <div>
+          <button
+            mat-icon-button
+            [matTooltip]="b.finished ? 'Mark as Unfinished' : 'Mark as Finished'"
+            data-testing="mark-book-as-finished"
+            [color]="b.finished ? 'alert' : null"
+            [attr.aria-label]="b.finished ? 'Mark' + b.title + 'as unfinished' : 'Mark' + b.title + 'as finished'"
+            (click)="markBookAsFinished(b)">
+            <mat-icon>{{ b.finished ? 'donut_small' : 'donut_large' }}</mat-icon>
+          </button>
+        </div>
     <div>
       <img class="reading-list-item--cover" [src]="b.coverUrl" alt="" />
     </div>
@@ -8,10 +19,14 @@
       <div class="reading-list-item--details--author">
         {{ b.authors.join(',') }}
       </div>
+      <div *ngIf="b.finished" class="reading-list-item--details--finished">
+          <em>Finished Date: {{ b.finishedDate | date:'medium'}}</em>
+        </div>
     </div>
     <div>
       <button
         mat-icon-button
+        data-testing="remove-book-from-list"
         color="warn"
         [attr.aria-label]="'Remove ' + b.title + ' from reading list'"
         (click)="removeFromReadingList(b)"
@@ -24,3 +39,5 @@
 <ng-template #empty>
   <p class="empty">You haven't added any books to your reading list yet.</p>
 </ng-template>
+
+
