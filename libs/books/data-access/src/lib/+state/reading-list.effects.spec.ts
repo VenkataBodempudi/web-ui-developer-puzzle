@@ -7,6 +7,8 @@ import { HttpTestingController } from '@angular/common/http/testing';
 import { SharedTestingModule } from '@tmo/shared/testing';
 import { ReadingListEffects } from './reading-list.effects';
 import * as ReadingListActions from './reading-list.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 describe('ToReadEffects', () => {
   let actions: ReplaySubject<any>;
@@ -15,9 +17,10 @@ describe('ToReadEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SharedTestingModule],
+      imports: [SharedTestingModule, OverlayModule],
       providers: [
         ReadingListEffects,
+        MatSnackBar,
         provideMockActions(() => actions),
         provideMockStore()
       ]
